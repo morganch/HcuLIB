@@ -40,6 +40,35 @@
 	    
 	    DetailViewController *detailViewController = [[[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil] autorelease];
 	    UINavigationController *detailNavigationController = [[[UINavigationController alloc] initWithRootViewController:detailViewController] autorelease];
+//add background image...
+		NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"school_banner" ofType:@"png"];
+
+		NSURL *url = [NSURL fileURLWithPath:defaultPath];
+
+		NSData *data = [NSData dataWithContentsOfURL:url];
+		UIImage *image = [[UIImage alloc] initWithData:data];
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//        [detailNavigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+
+		imageView.frame = detailNavigationController.navigationBar.frame;
+		[imageView autoresizesSubviews];
+//		[detailNavigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//		[detailNavigationController.navigationBar.topItem setTitleView:imageView];
+		[imageView release];		
+
+//			UIImage *image = [UIImage imageNamed:@"banner.png"];
+//			UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//			[self.navigationController.navigationBar.topItem setTitleView:imageView];
+//			[[[[self.splitViewController.viewControllers objectAtIndex:0] navigationBar] topItem] setTitleView:imageView];
+//			NSLog(@"load the image: %@",imageView);
+//			[imageView release];
+
+//			UINavigationBar *navBar = [[self.splitViewController.viewControllers objectAtIndex:0] navigationBar];
+//				UINavigationBar *navBar = detailNavigationController.navigationBar;
+//			NSLog(@"the navbar: %@",navBar);
+			
+//UIImage *image = [UIImage imageNamed:@"yourNavBarBackground.png"];
+//			[navBar setBackgroundImage:image];
 		
 	    self.splitViewController = [[[UISplitViewController alloc] init] autorelease];
 	    self.splitViewController.delegate = detailViewController;

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>服務</key>
+	<array>
+		<dict>
+			<key>個人借閱狀況</key>
+			<string>http://210.60.55.235/Webpac2/Person.dll/</string>
+			<key>次功能</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>新書介紹</key>
+			<string>http://210.60.62.8/weblink/scripts/weblink/cChoicemonth2.aspx</string>
+		</dict>
+		<dict>
+			<key>書刊推薦</key>
+			<string>http://210.60.62.8/weblink/</string>
+		</dict>
+		<dict>
+			<key>全國文獻傳遞服務</key>
+			<string>http://ndds.stpi.narl.org.tw/</string>
+		</dict>
+	</array>
+	<key>館藏</key>
+	<array>
+		<dict>
+			<key>圖書館館藏查詢</key>
+			<string>http://210.60.55.235/Webpac2/msearch.dll/</string>
+		</dict>
+		<dict>
+			<key>館藏分類號查詢</key>
+			<string>http://210.60.55.235/WEBPAC2/ClassSearch.dll/</string>
+		</dict>
+		<dict>
+			<key>教師指定參考書查詢</key>
+			<string>http://210.60.55.235/WEBPAC2/RefBook.dll/</string>
+		</dict>
+		<dict>
+			<key>電子資源查詢</key>
+			<string>http://210.60.55.6/hcuhyint/index.jsp</string>
+		</dict>
+		<dict>
+			<key>博碩士論文檢索</key>
+			<string>http://cloud.ncl.edu.tw/hcu/</string>
+		</dict>
+	</array>
+	<key>規則辦法</key>
+	<array>
+		<dict>
+			<key>借書規則</key>
+			<string>http://library.hcu.edu.tw/front/bin/ptdetail.phtml?Part=cod003</string>
+		</dict>
+		<dict>
+			<key>閱覽管理規則</key>
+			<string>http://library.hcu.edu.tw/front/bin/ptdetail.phtml?Part=cod002</string>
+		</dict>
+		<dict>
+			<key>資料賠償辦法</key>
+			<string>http://library.hcu.edu.tw/front/bin/ptdetail.phtml?Part=cod005</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -15,15 +15,28 @@
 
 @implementation DetailViewController
 
-@synthesize detailItem = _detailItem;
+//@synthesize detailItem = _detailItem;
+@synthesize detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
+@synthesize pageURL;
+@synthesize webView;
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil pageURL:(NSString *)pageurl{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        pageURL = pageurl;
+    }
+    return self;
+}
 
 - (void)dealloc
 {
-	[_detailItem release];
+	[detailItem release];
 	[_detailDescriptionLabel release];
 	[_masterPopoverController release];
+	[webView release];
+    
     [super dealloc];
 }
 
@@ -31,10 +44,23 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
-        [_detailItem release]; 
-        _detailItem = [newDetailItem retain]; 
-
+    NSLog(@"detailItem: %@",newDetailItem);
+    if (detailItem != newDetailItem) {
+        [detailItem release]; 
+        detailItem = [newDetailItem retain]; 
+        self.webView.delegate = self;
+/*
+        //update the webview here
+        pageURL = detailItem;
+        webViewController = nil;
+        webViewController = [[WebViewController alloc] initWithNibName:@"myWebView" bundle:nil fullpath:pageURL];
+        NSLog(@"will change the detail view");
+        
+        self.view = nil;
+        
+        [self.view addSubview:webViewController.view];
+   
+ */       
         // Update the view.
         [self configureView];
     }
@@ -65,6 +91,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    if (!pageURL) {
+        pageURL = @"http://210.60.55.235/Webpac2/msearch.dll/";
+    }
+//	NSString *defaultPath = @"http://www.hcu.edu.tw";
+    //		WebViewController *viewController = [[WebViewController alloc] initWithNibName:@"myWebView" bundle:nil];
+//		webView = [[UIWebView alloc] init];
+		webView.scalesPageToFit = YES;
+    NSURL *url = [NSURL URLWithString:pageURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+/*
+		
+    webViewController = [[WebViewController alloc] initWithNibName:@"myWebView" bundle:nil fullpath:pageURL] ; 
+    [self.view addSubview:webViewController.view];
+*/    
 	[self configureView];
 }
 
@@ -109,18 +150,21 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		self.title = NSLocalizedString(@"Detail", @"Detail");
+//		self.title = NSLocalizedString(@"Detail", @"Detail");
+			//self.title = @"玄奘大學圖書館";
+//add image here
+
     }
     return self;
 }
 							
 #pragma mark - Split view
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+    barButtonItem.title = NSLocalizedString(@"主選單", @"主選單");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
+    self.masterPopoverController = pc;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem

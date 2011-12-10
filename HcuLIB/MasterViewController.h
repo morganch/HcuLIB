@@ -10,8 +10,15 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <UIWebViewDelegate>
+{
+	NSString* _modelDataFilePath;
+	NSMutableDictionary* _model;
+	DetailViewController *detailViewController;
+}
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (retain, nonatomic) IBOutlet DetailViewController *detailViewController;
+@property (retain, nonatomic) NSString* _modelDataFilePath;
+@property (retain, nonatomic) NSMutableDictionary* _model;
 
 @end
